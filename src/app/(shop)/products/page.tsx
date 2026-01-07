@@ -5,6 +5,9 @@ import { Category } from "@/types/product";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+export const runtime = "edge";
+
+
 // Server Component
 export default async function ProductListPage({
     searchParams,

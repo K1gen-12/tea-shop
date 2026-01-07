@@ -8,6 +8,9 @@ import { CATEGORY_LABELS } from "@/lib/constants";
 import { ChevronLeft } from "lucide-react";
 import { AddToCartButton } from "@/components/features/AddToCartButton";
 
+export const runtime = "edge";
+
+
 export default async function ProductDetailPage({
     params,
 }: {

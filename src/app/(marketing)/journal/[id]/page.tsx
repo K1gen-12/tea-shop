@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/Badge";
 import { JOURNAL_ARTICLES } from "@/lib/journal-data";
 import { ChevronLeft } from "lucide-react";
 
+export const runtime = "edge";
+
+
 export default async function JournalDetailPage({
     params,
 }: {

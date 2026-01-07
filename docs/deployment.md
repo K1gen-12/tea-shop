@@ -33,6 +33,21 @@ You **MUST** set the Node.js version to ensure compatibility with Next.js 15+.
 > [!IMPORTANT]
 > If you encounter build errors, double-check that `NODE_VERSION` is set in the environment variables. The default Node version on Cloudflare Pages is often too old for modern Next.js.
 
+## Troubleshooting
+
+### Edge Runtime Error
+If you see an error like:
+`The following routes were not configured to run with the Edge Runtime:`
+
+This means you are using dynamic routes or search parameters on a page that is not explicitly opted into the Edge Runtime. The `@cloudflare/next-on-pages` adapter requires this for dynamic server-side rendering.
+
+**Solution:**
+Add the following line to your page file (e.g., `page.tsx`):
+
+```tsx
+export const runtime = 'edge';
+```
+
 ## Local Testing
 
 You can build and preview the Cloudflare Worker output locally:
