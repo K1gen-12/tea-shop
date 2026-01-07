@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<designSystem version="1.0" name="Japanese Tea Culture Platform">
+  <meta>
+    <description>
+      伝統的な日本茶の美学と現代的なウェブユーザビリティを融合させたデザインシステム。
+      「信頼感（Trust）」「読みやすさ（Readability）」「丁寧さ（Politeness）」をコアバリューとし、
+      老舗茶舗のECサイトから情報メディアまで対応可能な仕様とする。
+    </description>
+    <targetAudience>Japanese Users (All ages)</targetAudience>
+    <baseUnit>8px</baseUnit>
+  </meta>
+
+  <!-- ============================================
+       DESIGN TOKENS (Primitive Values)
+       ============================================ -->
+  <tokens>
+    <!-- Color Palette
+         Based on tea types (Matcha, Hojicha) and natural elements (Washi paper, Wood).
+         Source references: Ippodo, Gion Tsujiri, Ichikawaen
+    -->
+    <colors>
+      <palette name="Green">
+        <!-- Deep Tea Green: For primary actions and branding -->
+        <color name="green-900" value="#2A4036" comment="濃茶（こいちゃ）：深い信頼感、フッター背景"/>
+        <color name="green-700" value="#4B6E5B" comment="抹茶（まっちゃ）：プライマリボタン、リンク色"/>
+        <color name="green-100" value="#E8F0EB" comment="若葉（わかば）：背景アクセント、ホバー状態"/>
+      </palette>
+
+      <palette name="Brown">
+        <!-- Hojicha/Wood: For warmth and secondary accents -->
+        <color name="brown-700" value="#8D5A34" comment="焙じ茶（ほうじちゃ）：アクセント、重要なお知らせ"/>
+        <color name="brown-100" value="#F5EFE8" comment="生成り（きなり）：セクション背景"/>
+      </palette>
+
+      <palette name="Neutral">
+        <!-- Ink & Paper: High contrast for readability -->
+        <color name="text-primary" value="#333333" comment="墨色：本文テキスト（純黒#000は避ける）"/>
+        <color name="text-secondary" value="#666666" comment="薄墨：補足情報、メタデータ"/>
+        <color name="border-light" value="#E5E5E5" comment="境界線：繊細な区切り"/>
+        <color name="background-base" value="#F9F9F9" comment="和紙白：全体の背景色（目に優しい白）"/>
+        <color name="white" value="#FFFFFF" comment="純白：カード背景、画像枠"/>
+      </palette>
+
+      <palette name="functional">
+        <color name="error" value="#B00020" comment="エラー表示"/>
+        <color name="gold" value="#C5A059" comment="金粉：プレミアム商品、ランキング1位、祝賀"/>
+      </palette>
+    </colors>
+
+    <!-- Typography
+         Optimized for Japanese legibility.
+         Source references: NSSG, OCHATIMES
+    -->
+    <typography>
+      <fontFamilies>
+        <!-- Mincho for headings (Tradition/Elegant) -->
+        <family name="serif-jp" value="'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', serif"/>
+        <!-- Gothic for body text (Readability/Modern) -->
+        <family name="sans-jp" value="'Zen Kaku Gothic New', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif"/>
+        <!-- English accent font -->
+        <family name="accent-en" value="'Cormorant Garamond', serif"/>
+      </fontFamilies>
+
+      <sizes>
+        <size name="xs" value="12px" comment="注釈、タグ"/>
+        <size name="sm" value="14px" comment="補足テキスト、スマホ本文"/>
+        <size name="base" value="16px" comment="PC本文基準"/>
+        <size name="lg" value="18px" comment="リード文、小見出し"/>
+        <size name="xl" value="24px" comment="中見出し (h3)"/>
+        <size name="2xl" value="32px" comment="大見出し (h2)"/>
+        <size name="3xl" value="48px" comment="特大見出し (h1)"/>
+      </sizes>
+
+      <lineHeights>
+        <!-- Japanese text requires more breathing room than English -->
+        <height name="tight" value="1.4" comment="見出し用"/>
+        <height name="normal" value="1.8" comment="本文用（読みやすさ重視）"/>
+        <height name="loose" value="2.0" comment="長文、コラム用"/>
+      </lineHeights>
+
+      <letterSpacings>
+        <spacing name="base" value="0.05em" comment="ゴシック体用"/>
+        <spacing name="wide" value="0.1em" comment="明朝体見出し用（高級感演出）"/>
+      </letterSpacings>
+    </typography>
+
+    <!-- Spacing & Layout
+         Concept: "Ma" (Negative Space)
+    -->
+    <spacing>
+      <space name="xs" value="8px"/>
+      <space name="sm" value="16px"/>
+      <space name="md" value="32px"/>
+      <space name="lg" value="64px"/>
+      <space name="xl" value="120px" comment="セクション間の余白（ゆとりを持たせる）"/>
+    </spacing>
+
+    <breakpoints>
+      <point name="mobile" value="375px"/>
+      <point name="tablet" value="768px"/>
+      <point name="desktop" value="1280px"/>
+    </breakpoints>
+  </tokens>
+
+  <!-- ============================================
+       COMPONENT SPECIFICATIONS
+       ============================================ -->
+  <components>
+    <!-- Buttons
+         Source references: Ippodo (Simple), STARBUCKS TEAVANA (Modern)
+    -->
+    <button type="primary">
+      <style>
+        <backgroundColor>#4B6E5B</backgroundColor> <!-- green-700 -->
+        <color>#FFFFFF</color>
+        <padding>16px 48px</padding>
+        <fontFamily>sans-jp</fontFamily>
+        <fontSize>16px</fontSize>
+        <letterSpacing>0.1em</letterSpacing>
+        <borderRadius>2px</borderRadius> <!-- Slightly rounded, not pill-shaped -->
+        <transition>all 0.3s ease</transition>
+      </style>
+      <hover>
+        <backgroundColor>#2A4036</backgroundColor> <!-- green-900 -->
+        <opacity>0.9</opacity>
+      </hover>
+    </button>
+
+    <button type="secondary">
+      <style>
+        <backgroundColor>transparent</backgroundColor>
+        <border>1px solid #4B6E5B</border>
+        <color>#4B6E5B</color>
+        <padding>14px 46px</padding>
+      </style>
+      <hover>
+        <backgroundColor>#E8F0EB</backgroundColor> <!-- green-100 -->
+      </hover>
+    </button>
+
+    <!-- Product Cards
+         Source references: Ichikawaen, Gion Tsujiri
+    -->
+    <card type="product">
+      <style>
+        <backgroundColor>transparent</backgroundColor>
+        <border>none</border>
+        <boxShadow>0 4px 20px rgba(0,0,0,0.04)</boxShadow> <!-- Soft shadow for image only -->
+        <borderRadius>0</borderRadius>
+        <padding>0</padding>
+      </style>
+      <elements>
+        <imageAspectRatio>1:1</imageAspectRatio> <!-- Square for product consistency -->
+        <titleFont>serif-jp</titleFont>
+        <priceFont>sans-jp</priceFont>
+        <tagPosition>top-left</tagPosition>
+      </elements>
+    </card>
+
+    <!-- Navigation
+         Source references: Ippodo, OCHATIMES
+    -->
+    <navigation type="global">
+      <style>
+        <backgroundColor>#FFFFFF</backgroundColor> <!-- Clean white header -->
+        <height>80px</height>
+        <borderBottom>1px solid #E5E5E5</borderBottom>
+        <position>sticky</position>
+      </style>
+      <links>
+        <fontFamily>serif-jp</fontFamily>
+        <fontSize>15px</fontSize>
+        <color>#333333</color>
+        <hoverColor>#8D5A34</hoverColor> <!-- Hover changes to brown -->
+      </links>
+    </navigation>
+  </components>
+
+  <!-- ============================================
+       LAYOUT RULES (Japanese Context)
+       ============================================ -->
+  <layoutRules>
+    <rule id="vertical-rhythm">
+      <description>
+        日本語の可読性を高めるため、行間（line-height）は欧文サイトよりも広く取る。
+        段落間のマージンは文字サイズの1.5倍〜2.0倍を確保する。
+      </description>
+      <css>
+        p { margin-bottom: 2em; line-height: 1.625; } <!-- relaxed -->
+      </css>
+    </rule>
+
+    <rule id="tategaki-accent">
+      <description>
+        「和」の強調として、セクション見出しやキャッチコピーに縦書き（writing-mode: vertical-rl）を使用する。
+        ただし、長文には使用せず、アクセントに留める。
+      </description>
+      <css>
+        .tategaki { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.2em; }
+      </css>
+    </rule>
+
+    <rule id="content-width">
+      <description>
+        一行の文字数は全角35文字〜40文字程度に抑え、視線移動の負荷を下げる。
+      </description>
+      <value>max-width: 720px (for text content)</value>
+    </rule>
+  </layoutRules>
+  <implementation framework="Tailwind CSS">
+    <fontImport>
+      <url>https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap</url>
+    </fontImport>
+
+    <classMapping>
+      <colors>
+        green-900: 'bg-[#2A4036]', text-green-900: 'text-[#2A4036]'
+        brown-700: 'bg-[#8D5A34]', text-brown-700: 'text-[#8D5A34]'
+        paper: 'bg-[#F9F9F9]'
+      </colors>
+      <typography>
+        heading: 'font-serif-jp tracking-wide leading-tight'  /* 明朝体 + 字間広め */
+        body: 'font-sans-jp tracking-base leading-normal'    /* ゴシック体 + 行間ゆったり */
+        vertical: 'writing-vertical-rl text-upright tracking-[0.2em]' /* 縦書きクラス */
+      </typography>
+    </classMapping>
+
+    <globalStyles>
+      body { @apply font-sans-jp text-text-primary bg-background-base; }
+    </globalStyles>
+  </implementation>
+</designSystem>

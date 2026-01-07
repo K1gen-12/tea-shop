@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-green-900: #2A4036;
+  --color-green-700: #4B6E5B;
+  --color-green-100: #E8F0EB;
+  --color-brown-700: #8D5A34;
+  --color-brown-100: #F5EFE8;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-background-base: #F9F9F9;
+  --color-white: #FFFFFF;
+  --color-border-light: #E5E5E5;
+
+  /* Fonts */
+  --font-serif-jp: var(--font-serif-jp), serif;
+  --font-sans-jp: var(--font-sans-jp), sans-serif;
+  --font-accent-en: var(--font-accent-en), serif;
+
+  /* Spacing */
+  --spacing-xl: 120px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Base Styles */
+body {
+  @apply font-sans-jp text-text-primary bg-background-base leading-relaxed tracking-wider;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif-jp tracking-widest leading-tight;
+}
+
+/* Vertical Text Utility */
+.tategaki {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.2em;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green-700);
+  border-radius: 4px;
+}

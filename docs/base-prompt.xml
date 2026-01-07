@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint version="1.0" name="Fukamicha EC Platform">
+  <meta>
+    <description>
+      日本茶ブランド「深茶（Fukamicha）」のリニューアルプロジェクト定義ファイル。
+      本ファイルを実装における絶対的な「正（Source of Truth）」とする。
+    </description>
+    <updated>2026-01-07</updated>
+  </meta>
+
+  <!-- ============================================
+       1. CORE RULES
+       ============================================ -->
+  <rules>
+    <tech_stack>
+      <framework>Next.js 14+ (App Router)</framework>
+      <language>TypeScript (Strict Mode)</language>
+      <styling>Tailwind CSS (config based on design-system.xml)</styling>
+      <state>React Context (Cart/Gift)</state>
+      <cms>MicroCMS (simulated/mock for dev)</cms>
+    </tech_stack>
+
+    <conventions>
+      <directory_structure>src/app/(marketing|shop), src/components/ui|features</directory_structure>
+      <naming>PascalCase for Components, camelCase for functions/vars, kebab-case for files</naming>
+      <comments>JSDoc style for clarity</comments>
+    </conventions>
+
+    <design_compliance>
+      <base>docs/design-system.xml</base>
+      <colors>Use CSS variables linked to Tailwind config (e.g., bg-green-900)</colors>
+      <typography>Ensure minimal vertical rhythm and Japanese readabilty</typography>
+    </design_compliance>
+  </rules>
+
+  <!-- ============================================
+       2. DATA MODELS
+       ============================================ -->
+  <data_model>
+    <entity name="Product">
+      <field name="id" type="string" required="true" />
+      <field name="name" type="string" required="true" />
+      <field name="price" type="number" required="true" />
+      <field name="description" type="string" required="true" />
+      <field name="category" type="enum" values="sencha,gyokuro,matcha,tool" required="true" />
+      <field name="tags" type="string[]" />
+      <field name="taste_profile" type="object" required="true">
+        <property name="sweetness" type="number" min="1" max="5" />
+        <property name="bitterness" type="number" min="1" max="5" />
+        <property name="umami" type="number" min="1" max="5" />
+        <property name="fragrance" type="number" min="1" max="5" />
+      </field>
+      <field name="images" type="string[]" required="true" />
+      <field name="stock_status" type="enum" values="in_stock,out_of_stock,limited" required="true" />
+    </entity>
+
+    <entity name="CartItem">
+      <field name="productId" type="string" required="true" />
+      <field name="quantity" type="number" min="1" required="true" />
+      <field name="giftOption" type="object" optional="true">
+        <property name="type" type="enum" values="noshi,ribbon" />
+        <property name="noshiType" type="string" />
+        <property name="name" type="string" />
+      </field>
+    </entity>
+  </data_model>
+
+  <!-- ============================================
+       3. FEATURES & LOGIC
+       ============================================ -->
+  <features>
+    <feature id="taste-chart" name="味覚レーダーチャート">
+      <description>商品の味覚特性（甘み・渋み・旨み・香り）をレーダーチャートで表示する。</description>
+      <requirements>
+        <req>Recharts等のライブラリを使用し、デザインシステムの配色（細い線、和の色）に合わせること。</req>
+        <req>商品詳細ページおよび一覧ページ（検索用）で使用可能にすること。</req>
+      </requirements>
+    </feature>
+
+    <feature id="gift-settings" name="ギフト設定機能">
+      <description>カートまたは購入フローで、詳細なギフトオプションを設定する。</description>
+      <logic>
+        <step>1. ユーザーが「ギフト設定」を有効化する。</step>
+        <step>2. 熨斗（のし）の種類をカード形式で選択する（プルダウン不可）。</step>
+        <step>3. 名入れフィールドに入力すると、プレビューに即時反映される。</step>
+      </logic>
+    </feature>
+
+    <feature id="vertical-text" name="縦書き演出">
+      <description>和の雰囲気を強調するため、特定のテキストを縦書きにする。</description>
+      <css_rule>writing-mode: vertical-rl; text-orientation: upright;</css_rule>
+      <target>Hero Catchcopy, Section Headings (h2)</target>
+    </feature>
+  </features>
+
+  <!-- ============================================
+       4. NAVIGATION FLOW
+       ============================================ -->
+  <flow>
+    <route path="/" page="Home">
+      <link to="/products" label="商品一覧へ" />
+    </route>
+    <route path="/products" page="ProductList">
+      <action>Filter by Category / Taste Chart</action>
+      <link to="/products/[id]" label="詳細を見る" />
+    </route>
+    <route path="/products/[id]" page="ProductDetail">
+      <action>Add to Cart</action>
+    </route>
+    <route path="/cart" page="Cart">
+      <action>Proceed to Checkout</action>
+    </route>
+    <route path="/checkout" page="Checkout">
+      <action>Guest Checkout / Member Checkout</action>
+      <action>Gift Settings Input</action>
+    </route>
+  </flow>
+
+</blueprint>
