@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { STORE_INFO } from "@/lib/constants";
+
 
 export function Footer() {
     return (
@@ -40,9 +42,9 @@ export function Footer() {
                 <div>
                     <h4 className="font-serif-jp text-lg mb-6 tracking-wider">店舗情報</h4>
                     <p className="text-sm text-gray-300 leading-loose font-sans-jp">
-                        〒605-0000<br />
-                        京都府京都市東山区...<br />
-                        Open: 10:00 - 18:00
+                        {STORE_INFO.postalCode}<br />
+                        {STORE_INFO.address}<br />
+                        Open: {STORE_INFO.hours}
                     </p>
                 </div>
             </div>

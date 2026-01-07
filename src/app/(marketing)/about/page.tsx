@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { STORE_INFO } from "@/lib/constants";
+
 
 export default function AboutPage() {
     return (
@@ -55,22 +57,22 @@ export default function AboutPage() {
                     <div className="space-y-6 font-sans-jp">
                         <div className="flex border-b border-border-light pb-4">
                             <span className="w-32 font-bold text-green-900">屋号</span>
-                            <span>深茶 - Fukamicha</span>
+                            <span>{STORE_INFO.name}</span>
                         </div>
                         <div className="flex border-b border-border-light pb-4">
                             <span className="w-32 font-bold text-green-900">住所</span>
                             <span>
-                                〒810-0000<br />
-                                福岡県福岡市中央区...
+                                {STORE_INFO.postalCode}<br />
+                                {STORE_INFO.address}
                             </span>
                         </div>
                         <div className="flex border-b border-border-light pb-4">
                             <span className="w-32 font-bold text-green-900">営業時間</span>
-                            <span>10:00 - 18:00 (水曜定休)</span>
+                            <span>{STORE_INFO.hours}</span>
                         </div>
                         <div className="flex border-b border-border-light pb-4">
                             <span className="w-32 font-bold text-green-900">連絡先</span>
-                            <span>info@fukamicha.example.com</span>
+                            <span>{STORE_INFO.email}</span>
                         </div>
                     </div>
 
