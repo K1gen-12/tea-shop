@@ -27,7 +27,7 @@ export default function Home() {
               <h2 className="tategaki text-3xl md:text-5xl font-serif-jp text-green-900 leading-loose">
                 心、整う、一杯。
               </h2>
-              <p className="tategaki text-lg md:text-xl font-serif-jp text-text-secondary leading-loose pt-12">
+              <p className="tategaki text-lg md:text-xl font-serif-jp text-text-secondary leading-loose pt-12 whitespace-nowrap">
                 霧深い山で育まれた、<br />
                 本物の日本茶をあなたへ。
               </p>
